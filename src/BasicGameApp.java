@@ -18,7 +18,6 @@ import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
 //*******************************************************************************
 // Class Definition Section
 
@@ -100,6 +99,10 @@ public class BasicGameApp implements Runnable {
 		astro2.bounce();
 		if(astro.rec.intersects(astro2.rec)){
 			System.out.println("Crash");
+			astro.dx = astro.dx + 1;
+			astro.dy = astro.dy + 1;
+			astro2.dx = astro2.dx + 1;
+			astro2.dy = astro2.dy + 1;
 		}
 
 	}
