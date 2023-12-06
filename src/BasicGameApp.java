@@ -39,6 +39,8 @@ public class BasicGameApp implements Runnable {
 	public BufferStrategy bufferStrategy;
 	public Image astroPic;
 	public Image astroPic2;
+
+	public Image astroPic3;
 	public Image background;
 
    //Declare the objects used in the program
@@ -46,6 +48,7 @@ public class BasicGameApp implements Runnable {
 	private Astronaut astro;
 
 	private Astronaut astro2;
+	private Astronaut astro3;
 
    // Main method definition
    // This is the code that runs first and automatically
@@ -70,6 +73,8 @@ public class BasicGameApp implements Runnable {
 		astroPic2 = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro2 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
 		background = Toolkit.getDefaultToolkit().getImage("space.jpeg"); //load the picture
+		astro3 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
+		astroPic3 = Toolkit.getDefaultToolkit().getImage("astronaut.png");
 	}// BasicGameApp()
 
    
@@ -97,17 +102,45 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		astro.bounce();
 		astro2.bounce();
+		astro3.bounce();
 		if(astro.rec.intersects(astro2.rec) && astro.isCrashing == false){
 			System.out.println("Crash");
-			astro.dx = astro.dx + 5;
-			astro.dy = astro.dy + 5;
-			astro2.dx = astro2.dx + 5;
-			astro2.dy = astro2.dy + 5;
+			astro.dx = -astro.dx + 5;
+			astro.dy = -astro.dy + 5;
+			astro2.dx = -astro2.dx + 5;
+			astro2.dy = -astro2.dy + 5;
 			astro.isCrashing = true;
 		}
 
 		if(astro.rec.intersects(astro2.rec) == false){
 			astro.isCrashing = false;
+		}
+
+		if(astro.rec.intersects(astro3.rec) && astro.isCrashing == false){
+			System.out.println("Crash");
+			astro.dx = -astro.dx + 5;
+			astro.dy = -astro.dy + 5;
+			astro3.dx = -astro3.dx + 5;
+			astro3.dy = -astro3.dy + 5;
+			astro.isCrashing = true;
+
+		}
+
+		if(astro.rec.intersects(astro3.rec) == false){
+			astro.isCrashing = false;
+		}
+
+		if(astro2.rec.intersects(astro3.rec) && astro2.isCrashing == false){
+			System.out.println("Crash");
+			astro2.dx = -astro2.dx - 5;
+			astro2.dy = -astro2.dy - 5;
+			astro3.dx = -astro3.dx - 5;
+			astro3.dy = -astro3.dy - 5;
+			astro2.isCrashing = true;
+		}
+
+		if(astro2.rec.intersects(astro3.rec) == false){
+			astro2.isCrashing = false;
 		}
 	}
 
@@ -162,6 +195,7 @@ public class BasicGameApp implements Runnable {
 		g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
 
       //draw the image of the astronaut
+		g.drawImage(astroPic3, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
 		g.drawImage(astroPic2, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 
