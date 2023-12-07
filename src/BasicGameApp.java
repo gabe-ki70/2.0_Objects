@@ -37,18 +37,18 @@ public class BasicGameApp implements Runnable {
    public JPanel panel;
    
 	public BufferStrategy bufferStrategy;
-	public Image astroPic;
-	public Image astroPic2;
+	public Image fishPic;
+	public Image fishPic2;
 
-	public Image astroPic3;
+	public Image fishPic3;
 	public Image background;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
-	private Astronaut astro;
+	private Fish fish;
 
-	private Astronaut astro2;
-	private Astronaut astro3;
+	private Fish fish2;
+	private Fish fish3;
 
    // Main method definition
    // This is the code that runs first and automatically
@@ -68,13 +68,13 @@ public class BasicGameApp implements Runnable {
        
       //variable and objects
       //create (construct) the objects needed for the game and load up 
-		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
-		astro = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
-		astroPic2 = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
-		astro2 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
-		background = Toolkit.getDefaultToolkit().getImage("space.jpeg"); //load the picture
-		astro3 = new Astronaut((int)(Math.random()*940),(int)(Math.random()*700));
-		astroPic3 = Toolkit.getDefaultToolkit().getImage("astronaut.png");
+		fishPic = Toolkit.getDefaultToolkit().getImage("animated fish.png"); //load the picture
+		fish = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
+		fishPic2 = Toolkit.getDefaultToolkit().getImage("animated fish2.png"); //load the picture
+		fish2 = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
+		background = Toolkit.getDefaultToolkit().getImage("aquarium background.jpeg"); //load the picture
+		fish3 = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
+		fishPic3 = Toolkit.getDefaultToolkit().getImage("animated fish3.png");
 	}// BasicGameApp()
 
    
@@ -100,19 +100,19 @@ public class BasicGameApp implements Runnable {
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
-		astro.bounce();
-		astro2.bounce();
-		astro3.bounce();
-		if(astro.rec.intersects(astro2.rec) && astro.isCrashing == false){
+		fish.bounce();
+		fish2.bounce();
+		fish3.bounce();
+		if(fish.rec.intersects(fish2.rec) && fish.isCrashing == false){
 			System.out.println("Crash");
-			astro.dx = -astro.dx + 5;
-			astro.dy = -astro.dy + 5;
-			astro2.dx = -astro2.dx + 5;
-			astro2.dy = -astro2.dy + 5;
-			astro.isCrashing = true;
+			fish.dx = -fish.dx + 5;
+			fish.dy = -fish.dy + 5;
+			fish2.dx = -fish2.dx + 5;
+			fish2.dy = -fish2.dy + 5;
+			fish.isCrashing = true;
 		}
 
-		if(astro.rec.intersects(astro2.rec) == false){
+		if(fish.rec.intersects(fish2.rec) == false){
 			astro.isCrashing = false;
 		}
 
