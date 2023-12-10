@@ -73,8 +73,9 @@ public class BasicGameApp implements Runnable {
 		fishPic2 = Toolkit.getDefaultToolkit().getImage("animated fish2.png"); //load the picture
 		fish2 = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
 		background = Toolkit.getDefaultToolkit().getImage("aquarium background.jpeg"); //load the picture
-		fish3 = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
 		fishPic3 = Toolkit.getDefaultToolkit().getImage("animated fish3.png");
+		fish3 = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
+
 	}// BasicGameApp()
 
    
@@ -102,7 +103,7 @@ public class BasicGameApp implements Runnable {
       //calls the move( ) code in the objects
 		fish.bounce();
 		fish2.bounce();
-		fish3.bounce();
+		fish3.wrap();
 		if(fish.rec.intersects(fish2.rec) && fish.isCrashing == false){
 			System.out.println("Crash");
 			fish.dx = -fish.dx + 5;
@@ -113,34 +114,34 @@ public class BasicGameApp implements Runnable {
 		}
 
 		if(fish.rec.intersects(fish2.rec) == false){
-			astro.isCrashing = false;
+			fish.isCrashing = false;
 		}
 
-		if(astro.rec.intersects(astro3.rec) && astro.isCrashing == false){
+		if(fish.rec.intersects(fish3.rec) && fish.isCrashing == false){
 			System.out.println("Crash");
-			astro.dx = -astro.dx + 5;
-			astro.dy = -astro.dy + 5;
-			astro3.dx = -astro3.dx + 5;
-			astro3.dy = -astro3.dy + 5;
-			astro.isCrashing = true;
+			fish.dx = -fish.dx + 5;
+			fish.dy = -fish.dy + 5;
+			fish3.dx = -fish3.dx + 5;
+			fish3.dy = -fish3.dy + 5;
+			fish.isCrashing = true;
 
 		}
 
-		if(astro.rec.intersects(astro3.rec) == false){
-			astro.isCrashing = false;
+		if(fish.rec.intersects(fish3.rec) == false){
+			fish.isCrashing = false;
 		}
 
-		if(astro2.rec.intersects(astro3.rec) && astro2.isCrashing == false){
+		if(fish2.rec.intersects(fish3.rec) && fish2.isCrashing == false){
 			System.out.println("Crash");
-			astro2.dx = -astro2.dx - 5;
-			astro2.dy = -astro2.dy - 5;
-			astro3.dx = -astro3.dx - 5;
-			astro3.dy = -astro3.dy - 5;
-			astro2.isCrashing = true;
+			fish2.dx = -fish2.dx - 5;
+			fish2.dy = -fish2.dy - 5;
+			fish3.dx = -fish3.dx - 5;
+			fish3.dy = -fish3.dy - 5;
+			fish2.isCrashing = true;
 		}
 
-		if(astro2.rec.intersects(astro3.rec) == false){
-			astro2.isCrashing = false;
+		if(fish2.rec.intersects(fish3.rec) == false){
+			fish2.isCrashing = false;
 		}
 	}
 
@@ -195,9 +196,9 @@ public class BasicGameApp implements Runnable {
 		g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
 
       //draw the image of the astronaut
-		g.drawImage(astroPic3, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
-		g.drawImage(astroPic2, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
-		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+		g.drawImage(fishPic3, fish3.xpos, fish3.ypos, fish3.width, fish3.height, null);
+		g.drawImage(fishPic2, fish2.xpos, fish2.ypos, fish2.width, fish2.height, null);
+		g.drawImage(fishPic, fish.xpos, fish.ypos, fish.width, fish.height, null);
 
 		g.dispose();
 
