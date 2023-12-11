@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 //*******************************************************************************
 // Class Definition Section
 
+
 public class BasicGameApp implements Runnable {
 
    //Variable Definition Section
@@ -42,6 +43,7 @@ public class BasicGameApp implements Runnable {
 
 	public Image fishPic3;
 	public Image background;
+	public boolean isRunning;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
@@ -101,16 +103,67 @@ public class BasicGameApp implements Runnable {
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
-		fish.bounce();
-		fish2.bounce();
-		fish3.wrap();
+		if(fish.isWrapping){
+			fish.wrap();
+		} else {
+			fish.bounce();
+		}
+
+		if(fish2.isWrapping){
+			fish2.wrap();
+		} else {
+			fish2.bounce();
+		}
+
+		if(fish3.isWrapping){
+			fish3.wrap();
+		} else{
+			fish3.bounce();
+		}
+
 		if(fish.rec.intersects(fish2.rec) && fish.isCrashing == false){
 			System.out.println("Crash");
-			fish.dx = -fish.dx + 5;
-			fish.dy = -fish.dy + 5;
-			fish2.dx = -fish2.dx + 5;
-			fish2.dy = -fish2.dy + 5;
+			if(fish.dx > fish2.dx){
+				fish.dx = -fish.dx + 5;
+				fish.dy = -fish.dy + 5;
+				fish.width = fish.width + 10;
+				fish.height = fish.height + 10;
+				fish2.dx = -fish2.dx - 5;
+				fish2.dy = -fish2.dy - 5;
+				fish2.width = fish2.width - 10;
+				fish2.height = fish2.height - 10;
+			}
+
+			if(fish.dx < fish2.dx){
+				fish.dx = -fish.dx - 5;
+				fish.dy = -fish.dy - 5;
+				fish.width = fish.width - 10;
+				fish.height = fish.height - 10;
+				fish2.dx = -fish2.dx + 5;
+				fish2.dy = -fish2.dy + 5;
+				fish2.width = fish2.width + 10;
+				fish2.height = fish2.height + 10;
+			}
+
 			fish.isCrashing = true;
+			if(fish.isWrapping == false){
+				fish.wrap();
+				fish.isWrapping = true;
+			}
+			else{
+				fish.isWrapping = false;
+				fish.bounce();
+
+			}
+			if(fish2.isWrapping == false){
+				fish2.wrap();
+				fish2.isWrapping = true;
+			}
+			else{
+				fish2.isWrapping = false;
+				fish2.bounce();
+
+			}
 		}
 
 		if(fish.rec.intersects(fish2.rec) == false){
@@ -119,12 +172,46 @@ public class BasicGameApp implements Runnable {
 
 		if(fish.rec.intersects(fish3.rec) && fish.isCrashing == false){
 			System.out.println("Crash");
-			fish.dx = -fish.dx + 5;
-			fish.dy = -fish.dy + 5;
-			fish3.dx = -fish3.dx + 5;
-			fish3.dy = -fish3.dy + 5;
-			fish.isCrashing = true;
+			if(fish.dx > fish3.dx){
+				fish.dx = -fish.dx + 5;
+				fish.dy = -fish.dy + 5;
+				fish.width = fish.width + 10;
+				fish.height = fish.height + 10;
+				fish3.dx = -fish3.dx - 5;
+				fish3.dy = -fish3.dy - 5;
+				fish3.width = fish3.width - 10;
+				fish3.height = fish3.height - 10;
+			}
 
+			if(fish.dx < fish3.dx){
+				fish.dx = -fish.dx - 5;
+				fish.dy = -fish.dy - 5;
+				fish.width = fish.width - 10;
+				fish.height = fish.height - 10;
+				fish3.dx = -fish3.dx + 5;
+				fish3.dy = -fish3.dy + 5;
+				fish3.width = fish3.width + 10;
+				fish3.height = fish3.height + 10;
+			}
+			fish.isCrashing = true;
+			if(fish.isWrapping == false){
+				fish.wrap();
+				fish.isWrapping = true;
+			}
+			else{
+				fish.isWrapping = false;
+				fish.bounce();
+
+			}
+			if(fish3.isWrapping == false){
+				fish3.wrap();
+				fish3.isWrapping = true;
+			}
+			else{
+				fish3.isWrapping = false;
+				fish3.bounce();
+
+			}
 		}
 
 		if(fish.rec.intersects(fish3.rec) == false){
@@ -133,16 +220,63 @@ public class BasicGameApp implements Runnable {
 
 		if(fish2.rec.intersects(fish3.rec) && fish2.isCrashing == false){
 			System.out.println("Crash");
-			fish2.dx = -fish2.dx - 5;
-			fish2.dy = -fish2.dy - 5;
-			fish3.dx = -fish3.dx - 5;
-			fish3.dy = -fish3.dy - 5;
+			if(fish2.dx > fish3.dx){
+				fish2.dx = -fish2.dx + 5;
+				fish2.dy = -fish2.dy + 5;
+				fish2.width = fish2.width + 10;
+				fish2.height = fish2.height + 10;
+				fish3.dx = -fish3.dx - 5;
+				fish3.dy = -fish3.dy - 5;
+				fish3.width = fish3.width - 10;
+				fish3.height = fish3.height - 10;
+			}
+
+			if(fish2.dx < fish3.dx){
+				fish2.dx = -fish2.dx - 5;
+				fish2.dy = -fish2.dy - 5;
+				fish2.width = fish2.width - 10;
+				fish2.height = fish2.height - 10;
+				fish3.dx = -fish3.dx + 5;
+				fish3.dy = -fish3.dy + 5;
+				fish3.width = fish3.width + 10;
+				fish3.height = fish3.height + 10;
+			}
 			fish2.isCrashing = true;
+			if(fish2.isWrapping == false){
+				fish2.wrap();
+				fish2.isWrapping = true;
+			}
+			else{
+				fish2.isWrapping = false;
+				fish2.bounce();
+
+			}
+			if(fish3.isWrapping == false){
+				fish3.wrap();
+				fish3.isWrapping = true;
+			}
+			else{
+				fish3.isWrapping = false;
+				fish3.bounce();
+
+			}
 		}
 
 		if(fish2.rec.intersects(fish3.rec) == false){
 			fish2.isCrashing = false;
 		}
+
+		if(fish.width >= 200 || fish2.width >= 200 || fish3.width >= 200){
+			System.out.println("Fish 1 Wins!");
+			System.exit(0);
+		}
+
+		if(fish.width < 40){
+
+		}
+
+
+
 	}
 
 

@@ -16,6 +16,7 @@ public class Fish {
         public Rectangle rec;
 
         public boolean isCrashing;
+        public boolean isWrapping;
         // METHOD DEFINITION SECTION
 
         // Constructor Definition
@@ -29,11 +30,12 @@ public class Fish {
             ypos = pYpos;
             dx = 2;
             dy = -5;
-            width = 60;
-            height = 60;
+            width = 100;
+            height = 100;
             isAlive = true;
             rec = new Rectangle(xpos,ypos, width, height);
             isCrashing = false;
+            isWrapping = false;
         } // constructor
 
         //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
