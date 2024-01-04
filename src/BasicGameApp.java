@@ -43,8 +43,9 @@ public class BasicGameApp implements Runnable {
 
 	public Image fishPic3;
 	public Image background;
+	public Image winscreen;
 	public boolean isRunning;
-
+	public boolean isWinning;
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private Fish fish;
@@ -67,16 +68,17 @@ public class BasicGameApp implements Runnable {
 	public BasicGameApp() {
       
       setUpGraphics();
-       
+       isWinning = false;
       //variable and objects
       //create (construct) the objects needed for the game and load up 
 		fishPic = Toolkit.getDefaultToolkit().getImage("animated fish.png"); //load the picture
-		fish = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
+		fish = new Fish((int)(Math.random()*440),(int)(Math.random()*700-100));
 		fishPic2 = Toolkit.getDefaultToolkit().getImage("animated fish2.png"); //load the picture
-		fish2 = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
+		fish2 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
 		background = Toolkit.getDefaultToolkit().getImage("aquarium background.jpeg"); //load the picture
 		fishPic3 = Toolkit.getDefaultToolkit().getImage("animated fish3.png");
-		fish3 = new Fish((int)(Math.random()*940),(int)(Math.random()*700));
+		fish3 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		winscreen = Toolkit.getDefaultToolkit().getImage("win screen.jpeg");
 
 	}// BasicGameApp()
 
@@ -266,17 +268,32 @@ public class BasicGameApp implements Runnable {
 			fish2.isCrashing = false;
 		}
 
-		if(fish.width >= 200 || fish2.width >= 200 || fish3.width >= 200){
+		if(fish.width >= 200 ){
+			isWinning = true;
 			System.out.println("Fish 1 Wins!");
-			System.exit(0);
+		}
+
+		if(fish2.width >= 200){
+			isWinning = true;
+			System.out.println("Fish 2 Wins!");
+		}
+
+		if(fish3.width >= 200){
+			isWinning = true;
+			System.out.println("Fish 3 Wins!");
 		}
 
 		if(fish.width < 40){
-
+			fish.isAlive = false;
 		}
 
+		if(fish2.width < 40){
+			fish2.isAlive = false;
+		}
 
-
+		if(fish3.width < 40){
+			fish3.isAlive = false;
+		}
 	}
 
 
@@ -327,13 +344,23 @@ public class BasicGameApp implements Runnable {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
-		g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
+		if(isWinning == true){
+			g.drawImage(winscreen, 0, 0, WIDTH, HEIGHT, null);
+		}
+		if(isWinning == false) {
+			g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
 
-      //draw the image of the astronaut
-		g.drawImage(fishPic3, fish3.xpos, fish3.ypos, fish3.width, fish3.height, null);
-		g.drawImage(fishPic2, fish2.xpos, fish2.ypos, fish2.width, fish2.height, null);
-		g.drawImage(fishPic, fish.xpos, fish.ypos, fish.width, fish.height, null);
-
+			//draw the image of the astronaut
+			if (fish3.isAlive = true) {
+				g.drawImage(fishPic3, fish3.xpos, fish3.ypos, fish3.width, fish3.height, null);
+			}
+			if (fish2.isAlive == true) {
+				g.drawImage(fishPic2, fish2.xpos, fish2.ypos, fish2.width, fish2.height, null);
+			}
+			if (fish.isAlive == true) {
+				g.drawImage(fishPic, fish.xpos, fish.ypos, fish.width, fish.height, null);
+			}
+		}
 		g.dispose();
 
 		bufferStrategy.show();
