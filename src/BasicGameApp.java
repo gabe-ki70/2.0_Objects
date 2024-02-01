@@ -13,6 +13,8 @@
 
 //Graphics Libraries
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.*;
 import javax.swing.JFrame;
@@ -22,7 +24,7 @@ import javax.swing.JPanel;
 // Class Definition Section
 
 
-public class BasicGameApp implements Runnable {
+public class BasicGameApp implements Runnable, KeyListener {
 
    //Variable Definition Section
    //Declare the variables used in the program 
@@ -46,6 +48,7 @@ public class BasicGameApp implements Runnable {
 	public Image winscreen;
 	public boolean isRunning;
 	public boolean isWinning;
+
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
 	private Fish fish;
@@ -72,7 +75,7 @@ public class BasicGameApp implements Runnable {
       //variable and objects
       //create (construct) the objects needed for the game and load up 
 		fishPic = Toolkit.getDefaultToolkit().getImage("animated fish.png"); //load the picture
-		fish = new Fish((int)(Math.random()*440),(int)(Math.random()*700-100));
+		fish = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
 		fishPic2 = Toolkit.getDefaultToolkit().getImage("animated fish2.png"); //load the picture
 		fish2 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
 		background = Toolkit.getDefaultToolkit().getImage("aquarium background.jpeg"); //load the picture
@@ -124,7 +127,6 @@ public class BasicGameApp implements Runnable {
 		}
 
 		if(fish.rec.intersects(fish2.rec) && fish.isCrashing == false){
-			System.out.println("Crash");
 			if(fish.dx > fish2.dx){
 				fish.dx = -fish.dx + 5;
 				fish.dy = -fish.dy + 5;
@@ -321,6 +323,7 @@ public class BasicGameApp implements Runnable {
       canvas = new Canvas();  
       canvas.setBounds(0, 0, WIDTH, HEIGHT);
       canvas.setIgnoreRepaint(true);
+	  canvas.addKeyListener(this);
    
       panel.add(canvas);  // adds the canvas to the panel.
    
@@ -364,5 +367,45 @@ public class BasicGameApp implements Runnable {
 		g.dispose();
 
 		bufferStrategy.show();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		System.out.println(e.getKeyCode());
+		if(e.getKeyCode() == 38){
+			System.out.println("going up");
+			fish.isNorth = true;
+		}
+		if(e.getKeyCode() == 39){
+			System.out.println("going right");
+			fish.dy = 0;
+			fish.dx = 5;
+		}
+		if(e.getKeyCode() == 37){
+			System.out.println("going left");
+			fish.dy = 0;
+			fish.dx = -5;
+		}
+		if(e.getKeyCode() == 40){
+			System.out.println("going down");
+			fish.isSouth = true;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == 38){
+			System.out.println("going up");
+			fish.isNorth = false;
+		}
+		if(e.getKeyCode() == 40){
+			System.out.println("going down");
+			fish.isSouth = false;
+		}
 	}
 }

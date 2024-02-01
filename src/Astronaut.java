@@ -18,6 +18,7 @@ public class Astronaut {
     public Rectangle rec;
 
     public boolean isCrashing;
+    public boolean isNorth;
     // METHOD DEFINITION SECTION
 
     // Constructor Definition
@@ -36,12 +37,15 @@ public class Astronaut {
         isAlive = true;
         rec = new Rectangle(xpos,ypos, width, height);
         isCrashing = false;
+        isNorth = false;
     } // constructor
 
     //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
     public void bounce() {
 
-
+        if(isNorth == true){
+            dy = -4;
+        }
         if(xpos < 0 || xpos > 1000 - width ) {
             dx = -dx;
         }
@@ -60,6 +64,9 @@ public class Astronaut {
     }
 
     public void wrap(){
+        if(isNorth == true){
+            dy = -4;
+        }
         if(xpos < -40){
             xpos = 1000-width;
         }

@@ -17,7 +17,9 @@ public class Fish {
 
         public boolean isCrashing;
         public boolean isWrapping;
-        // METHOD DEFINITION SECTION
+    public boolean isNorth;
+    public boolean isSouth;
+    // METHOD DEFINITION SECTION
 
         // Constructor Definition
         // A constructor builds the object when called and sets variable values.
@@ -36,12 +38,24 @@ public class Fish {
             rec = new Rectangle(xpos,ypos, width, height);
             isCrashing = false;
             isWrapping = false;
+            isNorth = false;
         } // constructor
 
         //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
         public void bounce() {
 
-
+            if(isNorth == true){
+                dy = -5;
+            }
+            if(isNorth == false){
+                dy = 0;
+            }
+            if(isSouth == true){
+                dy = 5;
+            }
+            if(isSouth == false){
+                dy = 0;
+            }
             if(xpos < 0 || xpos > 1000 - width ) {
                 dx = -dx;
             }
@@ -60,6 +74,18 @@ public class Fish {
         }
 
         public void wrap(){
+            if(isNorth == true){
+                dy = -5;
+            }
+            if(isNorth == false){
+                dy = 0;
+            }
+            if(isSouth == true){
+                dy = 5;
+            }
+            if(isSouth == false){
+                dy = 0;
+            }
             if(xpos < -40){
                 xpos = 1000-width;
             }
