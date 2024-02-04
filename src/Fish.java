@@ -19,6 +19,8 @@ public class Fish {
         public boolean isWrapping;
     public boolean isNorth;
     public boolean isSouth;
+    public boolean isEast;
+    public boolean isWest;
     // METHOD DEFINITION SECTION
 
         // Constructor Definition
@@ -39,6 +41,9 @@ public class Fish {
             isCrashing = false;
             isWrapping = false;
             isNorth = false;
+            isEast = false;
+            isSouth = false;
+            isWest = false;
         } // constructor
 
         //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
@@ -55,6 +60,18 @@ public class Fish {
             }
             if(isSouth == false){
                 dy = 0;
+            }
+            if(isWest == true){
+                dx = -5;
+            }
+            if(isWest == false){
+                dx = 0;
+            }
+            if(isEast == true){
+                dx = 5;
+            }
+            if(isEast == false){
+                dx = 0;
             }
             if(xpos < 0 || xpos > 1000 - width ) {
                 dx = -dx;
@@ -85,6 +102,18 @@ public class Fish {
             }
             if(isSouth == false){
                 dy = 0;
+            }
+            if(isWest == true){
+                dx = -5;
+            }
+            if(isWest == false){
+                dx = 0;
+            }
+            if(isEast == true){
+                dx = 5;
+            }
+            if(isEast == false){
+                dx = 0;
             }
             if(xpos < -40){
                 xpos = 1000-width;

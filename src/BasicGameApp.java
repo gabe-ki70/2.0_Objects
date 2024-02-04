@@ -383,13 +383,11 @@ public class BasicGameApp implements Runnable, KeyListener {
 		}
 		if(e.getKeyCode() == 39){
 			System.out.println("going right");
-			fish.dy = 0;
-			fish.dx = 5;
+			fish.isEast = true;
 		}
 		if(e.getKeyCode() == 37){
 			System.out.println("going left");
-			fish.dy = 0;
-			fish.dx = -5;
+			fish.isWest = true;
 		}
 		if(e.getKeyCode() == 40){
 			System.out.println("going down");
@@ -406,6 +404,14 @@ public class BasicGameApp implements Runnable, KeyListener {
 		if(e.getKeyCode() == 40){
 			System.out.println("going down");
 			fish.isSouth = false;
+		}
+		if(e.getKeyCode() == 37){
+			System.out.println("going left");
+			fish.isWest = false;
+		}
+		if(e.getKeyCode() == 39){
+			System.out.println("going left");
+			fish.isEast = false;
 		}
 	}
 }
