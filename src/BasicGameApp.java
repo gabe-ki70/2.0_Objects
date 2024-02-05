@@ -76,6 +76,7 @@ public class BasicGameApp implements Runnable, KeyListener {
       //create (construct) the objects needed for the game and load up 
 		fishPic = Toolkit.getDefaultToolkit().getImage("animated fish.png"); //load the picture
 		fish = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish.isControlled = true;
 		fishPic2 = Toolkit.getDefaultToolkit().getImage("animated fish2.png"); //load the picture
 		fish2 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
 		background = Toolkit.getDefaultToolkit().getImage("aquarium background.jpeg"); //load the picture
@@ -410,7 +411,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 			fish.isWest = false;
 		}
 		if(e.getKeyCode() == 39){
-			System.out.println("going left");
+			System.out.println("going right");
 			fish.isEast = false;
 		}
 	}

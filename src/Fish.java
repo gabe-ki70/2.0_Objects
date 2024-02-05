@@ -21,6 +21,7 @@ public class Fish {
     public boolean isSouth;
     public boolean isEast;
     public boolean isWest;
+    public boolean isControlled;
     // METHOD DEFINITION SECTION
 
         // Constructor Definition
@@ -44,34 +45,29 @@ public class Fish {
             isEast = false;
             isSouth = false;
             isWest = false;
+            isControlled = false;
+
         } // constructor
 
         //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
         public void bounce() {
+            if(isControlled) {
 
-            if(isNorth == true){
-                dy = -5;
-            }
-            if(isNorth == false){
-                dy = 0;
-            }
-            if(isSouth == true){
-                dy = 5;
-            }
-            if(isSouth == false){
-                dy = 0;
-            }
-            if(isWest == true){
-                dx = -5;
-            }
-            if(isWest == false){
-                dx = 0;
-            }
-            if(isEast == true){
-                dx = 5;
-            }
-            if(isEast == false){
-                dx = 0;
+                if (isNorth == false && isSouth == false) {
+                    dy = 0;
+                } else if (isNorth == true) {
+                    dy = -5;
+                } else {
+                    dy = 5;
+                }
+
+                if (isWest == false && isEast == false) {
+                    dx = 0;
+                } else if (isWest == true) {
+                    dx = -5;
+                } else {
+                    dx = 5;
+                }
             }
             if(xpos < 0 || xpos > 1000 - width ) {
                 dx = -dx;
@@ -91,30 +87,24 @@ public class Fish {
         }
 
         public void wrap(){
-            if(isNorth == true){
-                dy = -5;
-            }
-            if(isNorth == false){
-                dy = 0;
-            }
-            if(isSouth == true){
-                dy = 5;
-            }
-            if(isSouth == false){
-                dy = 0;
-            }
-            if(isWest == true){
-                dx = -5;
-            }
-            if(isWest == false){
-                dx = 0;
-            }
-            if(isEast == true){
-                dx = 5;
-            }
-            if(isEast == false){
-                dx = 0;
-            }
+if(isControlled) {
+    if (isNorth == false && isSouth == false) {
+        dy = 0;
+    } else if (isNorth == true) {
+        dy = -5;
+    } else {
+        dy = 5;
+    }
+
+    if (isWest == false && isEast == false) {
+        dx = 0;
+    } else if (isWest == true) {
+        dx = -5;
+    } else {
+        dx = 5;
+    }
+}
+
             if(xpos < -40){
                 xpos = 1000-width;
             }
