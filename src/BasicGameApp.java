@@ -55,6 +55,17 @@ public class BasicGameApp implements Runnable, KeyListener {
 
 	private Fish fish2;
 	private Fish fish3;
+	private Fish fish4;
+	private Fish fish5;
+	private Fish fish6;
+	private Fish fish7;
+	private Fish fish8;
+	private Fish fish9;
+	private Fish fish10;
+	private Fish fish11;
+	private Fish fish12;
+	private Fish fish13;
+	private Fish fish14;
 
    // Main method definition
    // This is the code that runs first and automatically
@@ -83,6 +94,17 @@ public class BasicGameApp implements Runnable, KeyListener {
 		fishPic3 = Toolkit.getDefaultToolkit().getImage("animated fish3.png");
 		fish3 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
 		winscreen = Toolkit.getDefaultToolkit().getImage("win screen.jpeg");
+		fish4 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish5 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish6 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish7 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish8 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish9 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish10 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish11 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish12 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish13 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
+		fish14 = new Fish((int)(Math.random()*940),(int)(Math.random()*700-100));
 
 	}// BasicGameApp()
 
@@ -126,7 +148,56 @@ public class BasicGameApp implements Runnable, KeyListener {
 		} else{
 			fish3.bounce();
 		}
-
+		if(fish4.isWrapping){
+			fish4.wrap();
+		} else{
+			fish4.bounce();
+		}
+		if(fish5.isWrapping){
+			fish5.wrap();
+		} else{
+			fish5.bounce();
+		}
+		if(fish6.isWrapping){
+			fish6.wrap();
+		} else{
+			fish6.bounce();
+		}
+		if(fish7.isWrapping){
+			fish7.wrap();
+		} else{
+			fish7.bounce();
+		}
+		if(fish8.isWrapping){
+			fish8.wrap();
+		} else{
+			fish8.bounce();
+		}
+		if(fish9.isWrapping){
+			fish9.wrap();
+		} else{
+			fish9.bounce();
+		}
+		if(fish10.isWrapping){
+			fish10.wrap();
+		} else{
+			fish10.bounce();
+		}
+		if(fish11.isWrapping){
+			fish11.wrap();
+		} else{
+			fish12.bounce();
+		}
+		if(fish13.isWrapping){
+			fish13.wrap();
+		} else{
+			fish13.bounce();
+		}
+		if(fish14.isWrapping){
+			fish14.wrap();
+		} else{
+			fish14.bounce();
+		}
 		if(fish.rec.intersects(fish2.rec) && fish.isCrashing == false){
 			if(fish.dx > fish2.dx){
 				fish.dx = -fish.dx + 5;
@@ -363,6 +434,39 @@ public class BasicGameApp implements Runnable, KeyListener {
 			}
 			if (fish.isAlive == true) {
 				g.drawImage(fishPic, fish.xpos, fish.ypos, fish.width, fish.height, null);
+			}
+			if (fish4.isAlive == true){
+				g.drawImage(fishPic2, fish4.xpos, fish4.ypos, fish4.width, fish4.height, null);
+			}
+			if (fish5.isAlive == true){
+				g.drawImage(fishPic3, fish5.xpos, fish5.ypos, fish5.width, fish5.height, null);
+			}
+			if (fish6.isAlive == true){
+				g.drawImage(fishPic2, fish6.xpos, fish6.ypos, fish6.width, fish6.height, null);
+			}
+			if (fish7.isAlive == true){
+				g.drawImage(fishPic3, fish7.xpos, fish7.ypos, fish7.width, fish7.height, null);
+			}
+			if (fish8.isAlive == true){
+				g.drawImage(fishPic2, fish8.xpos, fish8.ypos, fish8.width, fish8.height, null);
+			}
+			if (fish9.isAlive == true){
+				g.drawImage(fishPic3, fish9.xpos, fish9.ypos, fish9.width, fish9.height, null);
+			}
+			if (fish10.isAlive == true){
+				g.drawImage(fishPic2, fish10.xpos, fish10.ypos, fish10.width, fish10.height, null);
+			}
+			if (fish11.isAlive == true){
+				g.drawImage(fishPic3, fish11.xpos, fish11.ypos, fish11.width, fish11.height, null);
+			}
+			if (fish12.isAlive == true){
+				g.drawImage(fishPic2, fish12.xpos, fish12.ypos, fish12.width, fish12.height, null);
+			}
+			if (fish13.isAlive == true){
+				g.drawImage(fishPic3, fish13.xpos, fish13.ypos, fish13.width, fish13.height, null);
+			}
+			if (fish14.isAlive == true){
+				g.drawImage(fishPic2, fish14.xpos, fish14.ypos, fish14.width, fish14.height, null);
 			}
 		}
 		g.dispose();
