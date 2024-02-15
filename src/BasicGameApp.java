@@ -137,28 +137,28 @@ public class BasicGameApp implements Runnable, KeyListener {
 			fish3.bounce();
 		}
 
-		for(int j = 0; j < fishes.length; j++){
-			if(fish.rec.intersects(fishes[j].rec) && fish.isCrashing == false){
-				if(fish.dx > fishes[j].dx){
+		for(int x = 0; x < fishes.length; x++){
+			if(fish.rec.intersects(fishes[x].rec) && fish.isCrashing == false){
+				if(fish.dx > fishes[x].dx){
 					fish.dx = -fish.dx + 5;
 					fish.dy = -fish.dy + 5;
 					fish.width = fish.width + 10;
 					fish.height = fish.height + 10;
-					fishes[j].dx = -fishes[j].dx - 5;
-					fishes[j].dy = -fishes[j].dy - 5;
-					fishes[j].width = fishes[j].width - 10;
-					fishes[j].height = fishes[j].height - 10;
+					fishes[x].dx = -fishes[x].dx - 5;
+					fishes[x].dy = -fishes[x].dy - 5;
+					fishes[x].width = fishes[x].width - 10;
+					fishes[x].height = fishes[x].height - 10;
 				}
 
-				if(fish.dx < fishes[j].dx){
+				if(fish.dx < fishes[x].dx){
 					fish.dx = -fish.dx - 5;
 					fish.dy = -fish.dy - 5;
 					fish.width = fish.width - 10;
 					fish.height = fish.height - 10;
-					fishes[j].dx = -fishes[j].dx + 5;
-					fishes[j].dy = -fishes[j].dy + 5;
-					fishes[j].width = fishes[j].width + 10;
-					fishes[j].height = fishes[j].height + 10;
+					fishes[x].dx = -fishes[x].dx + 5;
+					fishes[x].dy = -fishes[x].dy + 5;
+					fishes[x].width = fishes[x].width + 10;
+					fishes[x].height = fishes[x].height + 10;
 				}
 				fish.isCrashing = true;
 				if(fish.isWrapping == false){
@@ -170,13 +170,13 @@ public class BasicGameApp implements Runnable, KeyListener {
 					fish.bounce();
 
 				}
-				if(fishes[j].isWrapping == false){
-					fishes[j].wrap();
-					fishes[j].isWrapping = true;
+				if(fishes[x].isWrapping == false){
+					fishes[x].wrap();
+					fishes[x].isWrapping = true;
 				}
 				else{
-					fishes[j].isWrapping = false;
-					fishes[j].bounce();
+					fishes[x].isWrapping = false;
+					fishes[x].bounce();
 
 				}
 			}
