@@ -137,6 +137,12 @@ public class BasicGameApp implements Runnable, KeyListener {
 			fish3.bounce();
 		}
 
+		for(int g = 0; g < fishes.length; g++){
+				if(fishes[g].rec.intersects(fishes[g].rec))
+					fishes[g].dx = -fishes[g].dx;
+				    fishes[g].dy = -fishes[g].dy;
+		}
+
 		for(int x = 0; x < fishes.length; x++){
 			if(fish.rec.intersects(fishes[x].rec) && fish.isCrashing == false){
 				if(fish.dx > fishes[x].dx){
